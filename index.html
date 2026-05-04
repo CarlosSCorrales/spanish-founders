@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Spanish Founders House — The Bridge to Silicon Valley</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-alt: #fbfbfd;
+    --bg-dark: #1d1d1f;
+    --text: #1d1d1f;
+    --text-muted: #6e6e73;
+    --text-light: #86868b;
+    --accent: #0071e3;
+    --border: #d2d2d7;
+    --border-soft: #f0f0f2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+  h1, h2, h3, h4 {
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+  }
+
+  /* ===== Nav ===== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 48px;
+    background: rgba(29, 29, 31, 0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  nav.scrolled {
+    background: rgba(255, 255, 255, 0.72);
+    border-bottom-color: rgba(0, 0, 0, 0.04);
+  }
+  .logo {
+    font-size: 17px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+  }
+  .logo span { color: rgba(255, 255, 255, 0.55); font-weight: 400; transition: color 0.3s ease; }
+  nav.scrolled .logo { color: var(--text); }
+  nav.scrolled .logo span { color: var(--text-light); }
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 0.85;
+    transition: opacity 0.2s, color 0.3s ease;
+  }
+  .nav-links a:hover { opacity: 1; }
+  nav.scrolled .nav-links a { color: var(--text); }
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    padding: 2px;
+    transition: background 0.3s ease;
+  }
+  nav.scrolled .lang-switch { background: rgba(0, 0, 0, 0.05); }
+  .lang-switch button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 100px;
+    font-family: inherit;
+    transition: all 0.25s;
+    font-weight: 500;
+  }
+  nav.scrolled .lang-switch button { color: var(--text-muted); }
+  .lang-switch button.active {
+    background: white;
+    color: var(--bg-dark);
+  }
+  nav.scrolled .lang-switch button.active {
+    background: var(--text);
+    color: white;
+  }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    line-height: 1;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: #0077ed; }
+  .btn-link {
+    color: var(--accent);
+    background: none;
+    padding: 4px 0;
+    font-size: 17px;
+    border-radius: 0;
+  }
+  .btn-link::after { content: ' ›'; }
+  .btn-link:hover { text-decoration: underline; }
+  .hero .btn-link { color: #2997ff; }
+
+  .btn-nav {
+    background: var(--accent);
+    color: white;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 100px;
+  }
+  .btn-nav:hover { background: #0077ed; }
+
+  /* ===== Sections ===== */
+  section { padding: 120px 24px; }
+  .container { max-width: 980px; margin: 0 auto; }
+  .container-wide { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  .eyebrow {
+    font-size: 19px;
+    color: var(--accent);
+    font-weight: 400;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .section-title {
+    font-size: 56px;
+    text-align: center;
+    margin-bottom: 16px;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+  .section-sub {
+    font-size: 21px;
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 auto 64px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding-top: 180px;
+    padding-bottom: 140px;
+    text-align: center;
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+    min-height: 720px;
+  }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .hero-photo::before {
+    content: '';
+    position: absolute;
+    inset: -5%;
+    background-image: url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=2400&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%) contrast(1.05) brightness(0.7);
+    animation: kenBurns 24s ease-out infinite alternate;
+  }
+  .hero-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(29, 29, 31, 0.55) 0%, rgba(29, 29, 31, 0.35) 35%, rgba(29, 29, 31, 0.85) 100%),
+      radial-gradient(ellipse at 50% 30%, rgba(0, 113, 227, 0.18) 0%, transparent 60%);
+  }
+  @keyframes kenBurns {
+    0%   { transform: scale(1.05) translate(0, 0); }
+    100% { transform: scale(1.18) translate(-2%, -1%); }
+  }
+  .hero > .container { position: relative; z-index: 1; }
+  .hero h1 {
+    font-size: 96px;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #2997ff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 26px;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 720px;
+    margin: 0 auto 32px;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+  }
+  .hero-tagline {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+  .hero-cta-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* ===== Hero stats strip ===== */
+  .stats-strip {
+    background: var(--bg-alt);
+    padding: 80px 24px;
+    border-top: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .stats-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat .num {
+    font-size: 64px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat .label {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ===== Audience cards ===== */
+  .audience {
+    padding: 24px;
+    background: var(--bg);
+  }
+  .audience-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .audience-card {
+    background: var(--bg-alt);
+    border-radius: 28px;
+    padding: 64px 48px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 460px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .audience-card:hover { transform: translateY(-4px); }
+  .audience-card.dark {
+    background: var(--bg-dark);
+    color: white;
+  }
+  .audience-card .label {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .audience-card.dark .label { color: rgba(255, 255, 255, 0.7); }
+  .audience-card h3 {
+    font-size: 40px;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .audience-card p {
+    font-size: 19px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .audience-card.dark p { color: rgba(255, 255, 255, 0.75); }
+  .audience-card .arrow {
+    color: var(--accent);
+    font-size: 19px;
+    font-weight: 400;
+  }
+  .audience-card.dark .arrow { color: #2997ff; }
+
+  /* ===== Problem ===== */
+  .problem-section { background: var(--bg-dark); color: white; padding: 140px 24px; }
+  .problem-section .section-title { color: white; }
+  .problem-section .eyebrow { color: #2997ff; }
+  .problem-section .section-sub { color: rgba(255, 255, 255, 0.7); }
+  .stat-callout {
+    text-align: center;
+    margin: 0 auto 80px;
+    max-width: 800px;
+  }
+  .stat-callout .big {
+    font-size: 120px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff9f43 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-callout .big-label {
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
+  }
+  .problem-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .problem-item {
+    background: var(--bg-dark);
+    padding: 40px 32px;
+    transition: background 0.3s;
+  }
+  .problem-item:hover { background: #2c2c2e; }
+  .problem-item h4 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: white;
+    font-weight: 500;
+  }
+  .problem-item p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+  }
+
+  /* ===== Solution: 6 pillars ===== */
+  .solution { background: var(--bg); padding: 140px 24px; }
+  .pillars {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .pillar {
+    background: var(--bg-alt);
+    border-radius: 24px;
+    padding: 48px 32px;
+    text-align: left;
+    transition: transform 0.3s;
+  }
+  .pillar:hover { transform: translateY(-4px); }
+  .pillar-num {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .pillar-icon {
+    width: 56px; height: 56px;
+    margin-bottom: 24px;
+    color: var(--accent);
+  }
+  .pillar h4 {
+    font-size: 28px;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .pillar .pillar-tag {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+  }
+  .pillar p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ===== Building / floors ===== */
+  .building-section { background: var(--bg-alt); padding: 140px 24px; }
+  .building {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .floors-stack {
+    background: var(--bg);
+    border-radius: 24px;
+    padding: 24px;
+  }
+  .floor {
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 8px;
+    background: var(--bg-alt);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .floor:hover { background: #f0f0f3; }
+  .floor:last-child { margin-bottom: 0; }
+  .floor.featured { background: linear-gradient(135deg, #0071e3 0%, #5e5ce6 100%); color: white; }
+  .floor.featured .floor-area { color: rgba(255, 255, 255, 0.85); }
+  .floor-label { font-weight: 500; font-size: 17px; }
+  .floor-area { color: var(--text-muted); font-size: 14px; font-weight: 500; }
+  .building-list-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .building-list-item:last-child { border-bottom: none; }
+  .building-list-item h4 {
+    font-size: 24px;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .building-list-item p {
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+
+  /* ===== Investment ===== */
+  .invest-section { background: var(--bg); padding: 140px 24px; }
+  .invest-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .invest-card {
+    background: var(--bg-alt);
+    border-radius: 24px;
+    padding: 56px 48px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .invest-card:hover { transform: translateY(-4px); }
+  .invest-card .invest-label {
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  .invest-card .invest-num {
+    font-size: 88px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #0071e3 0%, #5e5ce6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .invest-card .invest-desc {
+    font-size: 16px;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* ===== Roadmap ===== */
+  .roadmap-section { background: var(--bg-alt); padding: 140px 24px; }
+  .roadmap {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .road-step {
+    background: var(--bg);
+    border-radius: 20px;
+    padding: 40px 28px;
+    transition: transform 0.3s;
+  }
+  .road-step:hover { transform: translateY(-4px); }
+  .road-num {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+  .road-step h4 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .road-step p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ===== CTA / Waitlist ===== */
+  .cta-section {
+    background: var(--bg-dark);
+    padding: 140px 24px;
+    text-align: center;
+    color: white;
+  }
+  .cta-section h2 {
+    font-size: 72px;
+    color: white;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+  .cta-section h2 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #2997ff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cta-section p {
+    font-size: 21px;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 720px;
+    margin: 0 auto 48px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .role-select {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .role-pill {
+    padding: 10px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    font-family: inherit;
+    font-weight: 400;
+  }
+  .role-pill:hover { border-color: rgba(255, 255, 255, 0.4); }
+  .role-pill.active {
+    background: white;
+    color: var(--bg-dark);
+    border-color: white;
+    font-weight: 500;
+  }
+  .waitlist-form {
+    display: flex;
+    gap: 8px;
+    max-width: 460px;
+    margin: 0 auto 16px;
+  }
+  .waitlist-form input {
+    flex: 1;
+    padding: 14px 22px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    border-radius: 100px;
+    outline: none;
+    transition: all 0.2s;
+  }
+  .waitlist-form input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .waitlist-form input::placeholder { color: rgba(255, 255, 255, 0.4); }
+  .waitlist-form button {
+    background: white;
+    color: var(--bg-dark);
+    border: none;
+    padding: 0 28px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .waitlist-form button:hover { opacity: 0.9; }
+  .privacy-note {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 16px;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--bg-alt);
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    border-top: 1px solid var(--border-soft);
+  }
+  footer .tagline {
+    font-size: 15px;
+    color: var(--text);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ===== Scroll reveal ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== Team ===== */
+  .team-section { background: var(--bg); padding: 140px 24px; }
+  .team-intro {
+    max-width: 880px;
+    margin: 0 auto 80px;
+    text-align: center;
+  }
+  .team-intro .lead {
+    font-size: 32px;
+    color: var(--text);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+    margin-bottom: 24px;
+  }
+  .team-intro .lead em {
+    font-style: normal;
+    background: linear-gradient(135deg, #0071e3 0%, #5e5ce6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .team-intro .body {
+    font-size: 18px;
+    color: var(--text-muted);
+    line-height: 1.55;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .team-pillars {
+    max-width: 1100px;
+    margin: 80px auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .team-pillar {
+    background: var(--bg-alt);
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: left;
+  }
+  .team-pillar .num {
+    font-size: 14px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: 0.02em;
+  }
+  .team-pillar h4 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .team-pillar p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .team-grid {
+    max-width: 1100px;
+    margin: 80px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .team-grid.three-cols { grid-template-columns: repeat(3, 1fr); max-width: 880px; }
+  .team-grid.five-cols { grid-template-columns: repeat(5, 1fr); }
+  .person {
+    background: var(--bg-alt);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .person:hover { transform: translateY(-4px); }
+  .avatar {
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0071e3 0%, #5e5ce6 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0 auto 20px;
+    letter-spacing: -0.01em;
+  }
+  .avatar.v2 { background: linear-gradient(135deg, #ff9f43 0%, #ee5a6f 100%); }
+  .avatar.v3 { background: linear-gradient(135deg, #2997ff 0%, #00c9a7 100%); }
+  .avatar.v4 { background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%); }
+  .avatar.v5 { background: linear-gradient(135deg, #1d1d1f 0%, #6e6e73 100%); }
+  .person .name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+  .person .role {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+  .person .bio {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .person a.linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .person a.linkedin:hover { text-decoration: underline; }
+
+
+  @media (max-width: 900px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 16px 100px; min-height: 600px; }
+    .hero h1 { font-size: 52px; }
+    .hero-sub { font-size: 19px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .stat .num { font-size: 44px; }
+    .section-title { font-size: 36px; }
+    .section-sub { font-size: 17px; }
+    .audience-grid { grid-template-columns: 1fr; padding: 0 16px; }
+    .audience-card { padding: 40px 28px; min-height: auto; }
+    .audience-card h3 { font-size: 30px; }
+    .stat-callout .big { font-size: 72px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .building { grid-template-columns: 1fr; gap: 32px; }
+    .invest-grid { grid-template-columns: 1fr; }
+    .invest-card { padding: 40px 28px; }
+    .invest-card .invest-num { font-size: 64px; }
+    .roadmap { grid-template-columns: 1fr; }
+    .team-intro .lead { font-size: 24px; }
+    .team-pillars { grid-template-columns: 1fr; }
+    .team-grid, .team-grid.three-cols, .team-grid.five-cols { grid-template-columns: repeat(2, 1fr); }
+    .cta-section h2 { font-size: 44px; }
+    .cta-section p { font-size: 17px; }
+    .waitlist-form { flex-direction: column; border-radius: 20px; }
+    .waitlist-form button { padding: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="logo">Spanish Founders <span>House</span></div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#problem" data-i18n="nav.problem">The problem</a>
+      <a href="#solution" data-i18n="nav.solution">The hub</a>
+      <a href="#fund" data-i18n="nav.fund">The fund</a>
+      <a href="#team" data-i18n="nav.team">Team</a>
+      <a href="#roadmap" data-i18n="nav.roadmap">Roadmap</a>
+    </div>
+    <div class="lang-switch">
+      <button class="active" data-lang="en">EN</button>
+      <button data-lang="es">ES</button>
+    </div>
+    <a href="#waitlist" class="btn-nav" data-i18n="nav.cta">Join waitlist</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-photo">
+    <div class="hero-photo-overlay"></div>
+  </div>
+
+  <div class="container">
+    <h1 data-i18n="hero.title">The bridge to<br/><em>Silicon Valley</em>.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">A dedicated fund and a physical hub in San Francisco. Built for the Spanish founders ready to scale globally.</p>
+    <p class="hero-tagline" data-i18n="hero.tagline">100% focus on the business. Zero logistical friction.</p>
+    <div class="hero-cta-row">
+      <a href="#waitlist" class="btn btn-primary" data-i18n="hero.cta1">Join the waitlist</a>
+      <a href="#solution" class="btn btn-link" data-i18n="hero.cta2">Explore the model</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== STATS ===== -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div class="stat reveal"><div class="num">$50M</div><div class="label" data-i18n="hero.s1">Target fund size</div></div>
+    <div class="stat reveal"><div class="num">25</div><div class="label" data-i18n="hero.s2">Portfolio startups</div></div>
+    <div class="stat reveal"><div class="num">4.2x</div><div class="label" data-i18n="hero.s3">Target return</div></div>
+    <div class="stat reveal"><div class="num">~1,500m²</div><div class="label" data-i18n="hero.s4">Hub in San Francisco</div></div>
+  </div>
+</div>
+
+<!-- ===== AUDIENCE SELECTOR ===== -->
+<section class="audience">
+  <div class="audience-grid">
+    <a href="#solution" class="audience-card reveal">
+      <div>
+        <div class="label" data-i18n="aud.f.label">For founders</div>
+        <h3 data-i18n="aud.f.title">Land in San Francisco without losing six months.</h3>
+        <p data-i18n="aud.f.desc">Live, work, eat, and connect from day one. We handle housing, banking, visas, and legal — you stay 100% on the business.</p>
+      </div>
+      <span class="arrow" data-i18n="aud.f.cta">See the program ›</span>
+    </a>
+    <a href="#fund" class="audience-card dark reveal">
+      <div>
+        <div class="label" data-i18n="aud.i.label">For investors</div>
+        <h3 data-i18n="aud.i.title">Alpha through physical infrastructure.</h3>
+        <p data-i18n="aud.i.desc">A $50M co-investment vehicle targeting 4.2x returns through a fully integrated infrastructure model.</p>
+      </div>
+      <span class="arrow" data-i18n="aud.i.cta">See the thesis ›</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===== PROBLEM ===== -->
+<section id="problem" class="problem-section">
+  <div class="container">
+    <p class="eyebrow reveal" data-i18n="prob.eyebrow">The market failure</p>
+    <h2 class="section-title reveal" data-i18n="prob.title">A structural problem.<br/>Not a technical one.</h2>
+    <p class="section-sub reveal" data-i18n="prob.sub">90% of Spanish startups fail in the US — broken not by their product but by the friction around it.</p>
+    <div class="stat-callout reveal">
+      <div class="big">80%</div>
+      <div class="big-label" data-i18n="prob.callout">of founders return to Spain within six months.</div>
+    </div>
+  </div>
+  <div class="problem-grid reveal">
+    <div class="problem-item"><h4 data-i18n="prob.1.t">Housing</h4><p data-i18n="prob.1.d">Prohibitive costs in SF without US credit history.</p></div>
+    <div class="problem-item"><h4 data-i18n="prob.2.t">Banking</h4><p data-i18n="prob.2.d">Impossible to operate without a US bank account.</p></div>
+    <div class="problem-item"><h4 data-i18n="prob.3.t">Legal</h4><p data-i18n="prob.3.d">Fragmented advisory at $500–$800 per hour with no continuity.</p></div>
+    <div class="problem-item"><h4 data-i18n="prob.4.t">Network</h4><p data-i18n="prob.4.d">6 to 18 months to build a transactional local network from zero.</p></div>
+    <div class="problem-item"><h4 data-i18n="prob.5.t">Immigration</h4><p data-i18n="prob.5.d">O-1, E-2, and L-1 visa processes are expensive and slow.</p></div>
+    <div class="problem-item"><h4 data-i18n="prob.6.t">Isolation</h4><p data-i18n="prob.6.d">Culture shock and severe founder loneliness erode execution.</p></div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION: 6 PILLARS ===== -->
+<section id="solution" class="solution">
+  <p class="eyebrow reveal" data-i18n="sol.eyebrow">The 360° solution</p>
+  <h2 class="section-title reveal" data-i18n="sol.title">Everything you need.<br/>Under one roof.</h2>
+  <p class="section-sub reveal" data-i18n="sol.sub">Live, work, eat, connect, accelerate, and settle. The hub absorbs the logistical wear-and-tear so the founder stays on the business.</p>
+  <div class="pillars">
+    <div class="pillar reveal">
+      <div class="pillar-num">01</div>
+      <div class="pillar-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 28L28 10l20 18M14 24v22h28V24"/></svg></div>
+      <div class="pillar-tag" data-i18n="sol.p1.s">Residence</div>
+      <h4 data-i18n="sol.p1.t">Live</h4>
+      <p data-i18n="sol.p1.d">12 furnished rooms with day-one community.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-num">02</div>
+      <div class="pillar-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="14" width="40" height="32" rx="2"/><path d="M8 22h40"/></svg></div>
+      <div class="pillar-tag" data-i18n="sol.p2.s">Coworking</div>
+      <h4 data-i18n="sol.p2.t">Work</h4>
+      <p data-i18n="sol.p2.d">400 m² open space and 3 private suites.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-num">03</div>
+      <div class="pillar-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 20h28v18a8 8 0 01-8 8H22a8 8 0 01-8-8V20z"/><path d="M42 20a6 6 0 100 12"/></svg></div>
+      <div class="pillar-tag" data-i18n="sol.p3.s">Café</div>
+      <h4 data-i18n="sol.p3.t">Eat</h4>
+      <p data-i18n="sol.p3.d">Spanish-Californian cuisine. Daily networking.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-num">04</div>
+      <div class="pillar-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="28" cy="28" r="6"/><circle cx="12" cy="14" r="4"/><circle cx="44" cy="14" r="4"/><circle cx="12" cy="42" r="4"/><circle cx="44" cy="42" r="4"/><path d="M16 16l8 8M40 16l-8 8M16 40l8-8M40 40l-8-8"/></svg></div>
+      <div class="pillar-tag" data-i18n="sol.p4.s">Network</div>
+      <h4 data-i18n="sol.p4.t">Connect</h4>
+      <p data-i18n="sol.p4.d">Weekly events and VC dinners in SF.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-num">05</div>
+      <div class="pillar-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M28 6l7 16 16 2-12 12 3 16-14-7-14 7 3-16-12-12 16-2z"/></svg></div>
+      <div class="pillar-tag" data-i18n="sol.p5.s">Program</div>
+      <h4 data-i18n="sol.p5.t">Accelerate</h4>
+      <p data-i18n="sol.p5.d">12-week intensive on go-to-market and fundraising.</p>
+    </div>
+    <div class="pillar reveal">
+      <div class="pillar-num">06</div>
+      <div class="pillar-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 12h32v14H12zM12 30h32v14H12z"/><circle cx="18" cy="19" r="2" fill="currentColor"/><circle cx="18" cy="37" r="2" fill="currentColor"/></svg></div>
+      <div class="pillar-tag" data-i18n="sol.p6.s">Legal/Ops</div>
+      <h4 data-i18n="sol.p6.t">Settle</h4>
+      <p data-i18n="sol.p6.d">C-Corp setup, banking, and visa processing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUILDING / FLOORS ===== -->
+<section class="building-section">
+  <p class="eyebrow reveal" data-i18n="bld.eyebrow">The physical asset</p>
+  <h2 class="section-title reveal" data-i18n="bld.title">Approximately 1,500 m².<br/>Four floors. One ecosystem.</h2>
+  <p class="section-sub reveal" data-i18n="bld.sub">Operational infrastructure designed end-to-end for a founder's first six months in San Francisco.</p>
+  <div class="building">
+    <div class="floors-stack reveal">
+      <div class="floor featured">
+        <span class="floor-label" data-i18n="bld.f3.l">Floor 3 — Live</span>
+        <span class="floor-area">450 m²</span>
+      </div>
+      <div class="floor">
+        <span class="floor-label" data-i18n="bld.f2.l">Floor 2 — Growth</span>
+        <span class="floor-area">250 m²</span>
+      </div>
+      <div class="floor">
+        <span class="floor-label" data-i18n="bld.f1.l">Floor 1 — Work</span>
+        <span class="floor-area">500 m²</span>
+      </div>
+      <div class="floor">
+        <span class="floor-label" data-i18n="bld.f0.l">Ground — Social</span>
+        <span class="floor-area">350 m²</span>
+      </div>
+    </div>
+    <div class="building-list reveal">
+      <div class="building-list-item">
+        <h4 data-i18n="bld.d3.t">Live · 450 m²</h4>
+        <p data-i18n="bld.d3.d">12 residential rooms, common kitchen, and lounge.</p>
+      </div>
+      <div class="building-list-item">
+        <h4 data-i18n="bld.d2.t">Growth · 250 m²</h4>
+        <p data-i18n="bld.d2.d">3 private suites for scale-ups, with 24/7 access.</p>
+      </div>
+      <div class="building-list-item">
+        <h4 data-i18n="bld.d1.t">Work · 500 m²</h4>
+        <p data-i18n="bld.d1.d">Open coworking with 60 spots and 8 meeting rooms.</p>
+      </div>
+      <div class="building-list-item">
+        <h4 data-i18n="bld.d0.t">Social · 350 m²</h4>
+        <p data-i18n="bld.d0.d">Café and restaurant, event hall (50 pax), and reception.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INVESTMENT VEHICLE ===== -->
+<section id="fund" class="invest-section">
+  <p class="eyebrow reveal" data-i18n="fund.eyebrow">The investment vehicle</p>
+  <h2 class="section-title reveal" data-i18n="fund.title">$50M.<br/>Public-private. Co-investment.</h2>
+  <p class="section-sub reveal" data-i18n="fund.sub">A fully integrated infrastructure model — designed to capture portfolios that historically generate single-exit returns above $500M.</p>
+  <div class="invest-grid">
+    <div class="invest-card reveal">
+      <div class="invest-label" data-i18n="fund.c1.l">Target size</div>
+      <div class="invest-num">$50M</div>
+      <div class="invest-desc" data-i18n="fund.c1.d">$25M institutional target + $25M American VCs</div>
+    </div>
+    <div class="invest-card reveal">
+      <div class="invest-label" data-i18n="fund.c2.l">Portfolio strategy</div>
+      <div class="invest-num">25</div>
+      <div class="invest-desc" data-i18n="fund.c2.d">Target startups · 5 investments per year over 5 years</div>
+    </div>
+    <div class="invest-card reveal">
+      <div class="invest-label" data-i18n="fund.c3.l">Average ticket</div>
+      <div class="invest-num">$2M</div>
+      <div class="invest-desc" data-i18n="fund.c3.d">$1.2M initial check + $800K reserved for follow-ons</div>
+    </div>
+    <div class="invest-card reveal">
+      <div class="invest-label" data-i18n="fund.c4.l">Target return</div>
+      <div class="invest-num">4.2x</div>
+      <div class="invest-desc" data-i18n="fund.c4.d">~$209M total value on Series Seed/A traction-stage</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROADMAP ===== -->
+<section id="roadmap" class="roadmap-section">
+  <p class="eyebrow reveal" data-i18n="rm.eyebrow">Roadmap 2026</p>
+  <h2 class="section-title reveal" data-i18n="rm.title">The path to launch.</h2>
+  <p class="section-sub reveal" data-i18n="rm.sub">Four milestones from due diligence to capturing the first cohort of Spanish startups.</p>
+  <div class="roadmap">
+    <div class="road-step reveal">
+      <div class="road-num">Step 01</div>
+      <h4 data-i18n="rm.s1.t">Technical due diligence</h4>
+      <p data-i18n="rm.s1.d">Detailed audit of business model, infrastructure partners, and operational team in SF.</p>
+    </div>
+    <div class="road-step reveal">
+      <div class="road-num">Step 02</div>
+      <h4 data-i18n="rm.s2.t">Fund structuring</h4>
+      <p data-i18n="rm.s2.d">Co-investment terms and deployment mechanisms for Spanish Founders Bridge I.</p>
+    </div>
+    <div class="road-step reveal">
+      <div class="road-num">Step 03</div>
+      <h4 data-i18n="rm.s3.t">Committee approval</h4>
+      <p data-i18n="rm.s3.d">Final presentation to institutional governing bodies for capital deployment.</p>
+    </div>
+    <div class="road-step reveal">
+      <div class="road-num">Step 04</div>
+      <h4 data-i18n="rm.s4.t">Operational launch</h4>
+      <p data-i18n="rm.s4.d">Capture and integration of the first cohort of Spanish startups under the active California model.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEAM ===== -->
+<section id="team" class="team-section">
+  <p class="eyebrow reveal" data-i18n="team.eyebrow">The team</p>
+  <h2 class="section-title reveal" data-i18n="team.title">A hybrid team.<br/>Built for both ecosystems.</h2>
+  <div class="team-intro reveal">
+    <p class="lead" data-i18n="team.lead">Silicon Valley mindset. Spanish founder DNA. <em>One bridge.</em></p>
+    <p class="body" data-i18n="team.body">Decades of combined experience in institutional investment, scaling tech companies, and running acceleration programs — paired with deep roots in the Spanish entrepreneurial culture and an immersive network of US VCs, corporates, and mentors.</p>
+  </div>
+
+  <div class="team-pillars">
+    <div class="team-pillar reveal">
+      <div class="num">01</div>
+      <h4 data-i18n="team.tp1.t">Institutional capital</h4>
+      <p data-i18n="team.tp1.d">Deep expertise structuring and deploying institutional vehicles at scale.</p>
+    </div>
+    <div class="team-pillar reveal">
+      <div class="num">02</div>
+      <h4 data-i18n="team.tp2.t">Operational scaling</h4>
+      <p data-i18n="team.tp2.d">A track record of scaling tech companies and running acceleration programs.</p>
+    </div>
+    <div class="team-pillar reveal">
+      <div class="num">03</div>
+      <h4 data-i18n="team.tp3.t">Bicultural network</h4>
+      <p data-i18n="team.tp3.d">Direct relationships with US VCs, corporates, and the Spanish founder community.</p>
+    </div>
+  </div>
+
+  <!-- Placeholder team grid: replace names/roles/bios when ready -->
+  <div class="team-grid">
+    <div class="person reveal">
+      <div class="avatar">A</div>
+      <div class="name" data-i18n="team.p1.n">President &amp; Co-founder</div>
+      <div class="role" data-i18n="team.p1.r">Public-private networks &amp; execution</div>
+      <div class="bio" data-i18n="team.p1.b">Umbrella role across The Fund and The Hub.</div>
+    </div>
+    <div class="person reveal">
+      <div class="avatar v2">M</div>
+      <div class="name" data-i18n="team.p2.n">Managing Partner</div>
+      <div class="role" data-i18n="team.p2.r">Investment strategy &amp; portfolio</div>
+      <div class="bio" data-i18n="team.p2.b">Leads investment strategy, portfolio management, and fundraising.</div>
+    </div>
+    <div class="person reveal">
+      <div class="avatar v3">H</div>
+      <div class="name" data-i18n="team.p3.n">CEO of The Hub</div>
+      <div class="role" data-i18n="team.p3.r">Operations &amp; community</div>
+      <div class="bio" data-i18n="team.p3.b">Oversees hub operations, strategy, and community growth.</div>
+    </div>
+    <div class="person reveal">
+      <div class="avatar v4">P</div>
+      <div class="name" data-i18n="team.p4.n">Head of Acceleration</div>
+      <div class="role" data-i18n="team.p4.r">Programs &amp; portfolio support</div>
+      <div class="bio" data-i18n="team.p4.b">Leads accelerator programs and supports portfolio companies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA / WAITLIST ===== -->
+<section id="waitlist" class="cta-section">
+  <div class="container">
+    <h2 data-i18n="wl.title">Be there when the<br/><em>doors open</em>.</h2>
+    <p data-i18n="wl.sub">Founders, investors, and partners — early waitlist members get priority access to the first cohort, the investment round, and the launch community and events.</p>
+    <div class="role-select">
+      <button class="role-pill active" data-role="founder" data-i18n="wl.r1">I'm a founder</button>
+      <button class="role-pill" data-role="investor" data-i18n="wl.r2">I'm an investor</button>
+      <button class="role-pill" data-role="partner" data-i18n="wl.r3">Partner / Other</button>
+    </div>
+    <form class="waitlist-form" onsubmit="event.preventDefault(); alert('Mock form — wire to your email service when ready.');">
+      <input type="email" placeholder="your@email.com" required data-i18n-ph="wl.ph"/>
+      <button type="submit" data-i18n="wl.btn">Request access</button>
+    </form>
+    <p class="privacy-note" data-i18n="wl.priv">No spam. Updates only when there's something real to share.</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="tagline" data-i18n="ft.tag">Converting geographic friction into permanent competitive advantage.</div>
+  <div>antonio@spanish-founders.com · San Francisco, CA</div>
+  <div style="margin-top: 16px; font-size: 11px; opacity: 0.5;">© 2026 Spanish Founders House</div>
+</footer>
+
+<script>
+const i18n = {
+  en: {
+    'nav.problem': 'The problem', 'nav.solution': 'The hub', 'nav.fund': 'The fund', 'nav.team': 'Team', 'nav.roadmap': 'Roadmap', 'nav.cta': 'Join waitlist',
+    'hero.title': 'The bridge to<br/><em>Silicon Valley</em>.',
+    'hero.sub': 'A dedicated fund and a physical hub in San Francisco. Built for the Spanish founders ready to scale globally.',
+    'hero.tagline': '100% focus on the business. Zero logistical friction.',
+    'hero.cta1': 'Join the waitlist', 'hero.cta2': 'Explore the model',
+    'hero.s1': 'Target fund size', 'hero.s2': 'Portfolio startups', 'hero.s3': 'Target return', 'hero.s4': 'Hub in San Francisco',
+    'aud.f.label': 'For founders',
+    'aud.f.title': 'Land in San Francisco without losing six months.',
+    'aud.f.desc': 'Live, work, eat, and connect from day one. We handle housing, banking, visas, and legal — you stay 100% on the business.',
+    'aud.f.cta': 'See the program ›',
+    'aud.i.label': 'For investors',
+    'aud.i.title': 'Alpha through physical infrastructure.',
+    'aud.i.desc': 'A $50M co-investment vehicle targeting 4.2x returns through a fully integrated infrastructure model.',
+    'aud.i.cta': 'See the thesis ›',
+    'prob.eyebrow': 'The market failure',
+    'prob.title': 'A structural problem.<br/>Not a technical one.',
+    'prob.sub': '90% of Spanish startups fail in the US — broken not by their product but by the friction around it.',
+    'prob.callout': 'of founders return to Spain within six months.',
+    'prob.1.t': 'Housing', 'prob.1.d': 'Prohibitive costs in SF without US credit history.',
+    'prob.2.t': 'Banking', 'prob.2.d': 'Impossible to operate without a US bank account.',
+    'prob.3.t': 'Legal', 'prob.3.d': 'Fragmented advisory at $500–$800 per hour with no continuity.',
+    'prob.4.t': 'Network', 'prob.4.d': '6 to 18 months to build a transactional local network from zero.',
+    'prob.5.t': 'Immigration', 'prob.5.d': 'O-1, E-2, and L-1 visa processes are expensive and slow.',
+    'prob.6.t': 'Isolation', 'prob.6.d': 'Culture shock and severe founder loneliness erode execution.',
+    'sol.eyebrow': 'The 360° solution',
+    'sol.title': 'Everything you need.<br/>Under one roof.',
+    'sol.sub': 'Live, work, eat, connect, accelerate, and settle. The hub absorbs the logistical wear-and-tear so the founder stays on the business.',
+    'sol.p1.s': 'Residence', 'sol.p1.t': 'Live', 'sol.p1.d': '12 furnished rooms with day-one community.',
+    'sol.p2.s': 'Coworking', 'sol.p2.t': 'Work', 'sol.p2.d': '400 m² open space and 3 private suites.',
+    'sol.p3.s': 'Café', 'sol.p3.t': 'Eat', 'sol.p3.d': 'Spanish-Californian cuisine. Daily networking.',
+    'sol.p4.s': 'Network', 'sol.p4.t': 'Connect', 'sol.p4.d': 'Weekly events and VC dinners in SF.',
+    'sol.p5.s': 'Program', 'sol.p5.t': 'Accelerate', 'sol.p5.d': '12-week intensive on go-to-market and fundraising.',
+    'sol.p6.s': 'Legal/Ops', 'sol.p6.t': 'Settle', 'sol.p6.d': 'C-Corp setup, banking, and visa processing.',
+    'bld.eyebrow': 'The physical asset',
+    'bld.title': 'Approximately 1,500 m².<br/>Four floors. One ecosystem.',
+    'bld.sub': "Operational infrastructure designed end-to-end for a founder's first six months in San Francisco.",
+    'bld.f3.l': 'Floor 3 — Live', 'bld.f2.l': 'Floor 2 — Growth', 'bld.f1.l': 'Floor 1 — Work', 'bld.f0.l': 'Ground — Social',
+    'bld.d3.t': 'Live · 450 m²', 'bld.d3.d': '12 residential rooms, common kitchen, and lounge.',
+    'bld.d2.t': 'Growth · 250 m²', 'bld.d2.d': '3 private suites for scale-ups, with 24/7 access.',
+    'bld.d1.t': 'Work · 500 m²', 'bld.d1.d': 'Open coworking with 60 spots and 8 meeting rooms.',
+    'bld.d0.t': 'Social · 350 m²', 'bld.d0.d': 'Café and restaurant, event hall (50 pax), and reception.',
+    'fund.eyebrow': 'The investment vehicle',
+    'fund.title': '$50M.<br/>Public-private. Co-investment.',
+    'fund.sub': 'A fully integrated infrastructure model — designed to capture portfolios that historically generate single-exit returns above $500M.',
+    'fund.c1.l': 'Target size', 'fund.c1.d': '$25M institutional target + $25M American VCs',
+    'fund.c2.l': 'Portfolio strategy', 'fund.c2.d': 'Target startups · 5 investments per year over 5 years',
+    'fund.c3.l': 'Average ticket', 'fund.c3.d': '$1.2M initial check + $800K reserved for follow-ons',
+    'fund.c4.l': 'Target return', 'fund.c4.d': '~$209M total value on Series Seed/A traction-stage',
+    'rm.eyebrow': 'Roadmap 2026', 'rm.title': 'The path to launch.',
+    'rm.sub': 'Four milestones from due diligence to capturing the first cohort of Spanish startups.',
+    'rm.s1.t': 'Technical due diligence', 'rm.s1.d': 'Detailed audit of business model, infrastructure partners, and operational team in SF.',
+    'rm.s2.t': 'Fund structuring', 'rm.s2.d': 'Co-investment terms and deployment mechanisms for Spanish Founders Bridge I.',
+    'rm.s3.t': 'Committee approval', 'rm.s3.d': 'Final presentation to institutional governing bodies for capital deployment.',
+    'rm.s4.t': 'Operational launch', 'rm.s4.d': 'Capture and integration of the first cohort of Spanish startups under the active California model.',
+    'team.eyebrow': 'The team',
+    'team.title': 'A hybrid team.<br/>Built for both ecosystems.',
+    'team.lead': 'Silicon Valley mindset. Spanish founder DNA. <em>One bridge.</em>',
+    'team.body': 'Decades of combined experience in institutional investment, scaling tech companies, and running acceleration programs — paired with deep roots in the Spanish entrepreneurial culture and an immersive network of US VCs, corporates, and mentors.',
+    'team.tp1.t': 'Institutional capital', 'team.tp1.d': 'Deep expertise structuring and deploying institutional vehicles at scale.',
+    'team.tp2.t': 'Operational scaling', 'team.tp2.d': 'A track record of scaling tech companies and running acceleration programs.',
+    'team.tp3.t': 'Bicultural network', 'team.tp3.d': 'Direct relationships with US VCs, corporates, and the Spanish founder community.',
+    'team.p1.n': 'President &amp; Co-founder', 'team.p1.r': 'Public-private networks &amp; execution', 'team.p1.b': 'Umbrella role across The Fund and The Hub.',
+    'team.p2.n': 'Managing Partner', 'team.p2.r': 'Investment strategy &amp; portfolio', 'team.p2.b': 'Leads investment strategy, portfolio management, and fundraising.',
+    'team.p3.n': 'CEO of The Hub', 'team.p3.r': 'Operations &amp; community', 'team.p3.b': 'Oversees hub operations, strategy, and community growth.',
+    'team.p4.n': 'Head of Acceleration', 'team.p4.r': 'Programs &amp; portfolio support', 'team.p4.b': 'Leads accelerator programs and supports portfolio companies.',
+    'wl.title': 'Be there when the<br/><em>doors open</em>.',
+    'wl.sub': 'Founders, investors, and partners — early waitlist members get priority access to the first cohort, the investment round, and the launch community and events.',
+    'wl.r1': "I'm a founder", 'wl.r2': "I'm an investor", 'wl.r3': 'Partner / Other',
+    'wl.ph': 'your@email.com', 'wl.btn': 'Request access',
+    'wl.priv': "No spam. Updates only when there's something real to share.",
+    'ft.tag': 'Converting geographic friction into permanent competitive advantage.'
+  },
+  es: {
+    'nav.problem': 'El problema', 'nav.solution': 'El hub', 'nav.fund': 'El fondo', 'nav.team': 'Equipo', 'nav.roadmap': 'Hoja de ruta', 'nav.cta': 'Unirme',
+    'hero.title': 'El puente a<br/><em>Silicon Valley</em>.',
+    'hero.sub': 'Un fondo dedicado y un hub físico en San Francisco. Para los founders españoles listos para escalar globalmente.',
+    'hero.tagline': '100% de foco en el negocio. Cero fricción logística.',
+    'hero.cta1': 'Apuntarme a la lista', 'hero.cta2': 'Explorar el modelo',
+    'hero.s1': 'Tamaño objetivo del fondo', 'hero.s2': 'Startups en cartera', 'hero.s3': 'Retorno objetivo', 'hero.s4': 'Hub en San Francisco',
+    'aud.f.label': 'Para founders',
+    'aud.f.title': 'Aterriza en San Francisco sin perder seis meses.',
+    'aud.f.desc': 'Vive, trabaja, come y conecta desde el día uno. Nosotros gestionamos vivienda, banca, visados y legal — tú al 100% en el negocio.',
+    'aud.f.cta': 'Ver el programa ›',
+    'aud.i.label': 'Para inversores',
+    'aud.i.title': 'Alfa a través de infraestructura física.',
+    'aud.i.desc': 'Vehículo de coinversión de 50M$ con objetivo de retorno 4,2x a través de un modelo de infraestructura plenamente integrado.',
+    'aud.i.cta': 'Ver la tesis ›',
+    'prob.eyebrow': 'El fallo de mercado',
+    'prob.title': 'Un problema estructural.<br/>No técnico.',
+    'prob.sub': 'El 90% de las startups españolas fracasa en EE. UU. — derrotadas no por el producto sino por la fricción a su alrededor.',
+    'prob.callout': 'de los founders vuelve a España en menos de seis meses.',
+    'prob.1.t': 'Vivienda', 'prob.1.d': 'Costes prohibitivos en SF sin historial de crédito en EE. UU.',
+    'prob.2.t': 'Banca', 'prob.2.d': 'Imposible operar sin una cuenta bancaria estadounidense.',
+    'prob.3.t': 'Legal', 'prob.3.d': 'Asesoramiento fragmentado a 500-800$ la hora sin continuidad.',
+    'prob.4.t': 'Red', 'prob.4.d': 'De 6 a 18 meses para construir una red transaccional local desde cero.',
+    'prob.5.t': 'Inmigración', 'prob.5.d': 'Visados O-1, E-2 y L-1 caros y lentos.',
+    'prob.6.t': 'Aislamiento', 'prob.6.d': 'Choque cultural y soledad severa del founder erosionan la ejecución.',
+    'sol.eyebrow': 'La solución 360°',
+    'sol.title': 'Todo lo que necesitas.<br/>Bajo un mismo techo.',
+    'sol.sub': 'Vive, trabaja, come, conecta, acelera y establécete. El hub absorbe el desgaste logístico para que el founder se centre en el negocio.',
+    'sol.p1.s': 'Residencia', 'sol.p1.t': 'Vivir', 'sol.p1.d': '12 habitaciones amuebladas con comunidad desde día uno.',
+    'sol.p2.s': 'Coworking', 'sol.p2.t': 'Trabajar', 'sol.p2.d': '400 m² de espacio abierto y 3 suites privadas.',
+    'sol.p3.s': 'Café', 'sol.p3.t': 'Comer', 'sol.p3.d': 'Cocina hispano-californiana. Networking diario.',
+    'sol.p4.s': 'Red', 'sol.p4.t': 'Conectar', 'sol.p4.d': 'Eventos semanales y cenas con VCs en SF.',
+    'sol.p5.s': 'Programa', 'sol.p5.t': 'Acelerar', 'sol.p5.d': '12 semanas intensivas de go-to-market y fundraising.',
+    'sol.p6.s': 'Legal/Ops', 'sol.p6.t': 'Establecerse', 'sol.p6.d': 'Constitución de C-Corp, banca y tramitación de visados.',
+    'bld.eyebrow': 'El activo físico',
+    'bld.title': 'Aproximadamente 1.500 m².<br/>Cuatro plantas. Un ecosistema.',
+    'bld.sub': 'Infraestructura operativa diseñada de extremo a extremo para los primeros seis meses del founder en San Francisco.',
+    'bld.f3.l': 'Planta 3 — Vivir', 'bld.f2.l': 'Planta 2 — Crecimiento', 'bld.f1.l': 'Planta 1 — Trabajar', 'bld.f0.l': 'Planta baja — Social',
+    'bld.d3.t': 'Vivir · 450 m²', 'bld.d3.d': '12 habitaciones residenciales, cocina común y lounge.',
+    'bld.d2.t': 'Crecimiento · 250 m²', 'bld.d2.d': '3 suites privadas para scale-ups, con acceso 24/7.',
+    'bld.d1.t': 'Trabajar · 500 m²', 'bld.d1.d': 'Coworking abierto con 60 puestos y 8 salas de reunión.',
+    'bld.d0.t': 'Social · 350 m²', 'bld.d0.d': 'Café y restaurante, sala de eventos (50 pax) y recepción.',
+    'fund.eyebrow': 'El vehículo de inversión',
+    'fund.title': '50M$.<br/>Público-privado. Coinversión.',
+    'fund.sub': 'Un modelo de infraestructura plenamente integrado — diseñado para capturar carteras que históricamente generan exits individuales superiores a 500M$.',
+    'fund.c1.l': 'Tamaño objetivo', 'fund.c1.d': '25M$ objetivo institucional + 25M$ VCs americanos',
+    'fund.c2.l': 'Estrategia de cartera', 'fund.c2.d': 'Startups objetivo · 5 inversiones al año durante 5 años',
+    'fund.c3.l': 'Ticket medio', 'fund.c3.d': '1,2M$ cheque inicial + 800K$ reservados para follow-ons',
+    'fund.c4.l': 'Retorno objetivo', 'fund.c4.d': '~209M$ valor total en etapa Seed/Series A con tracción',
+    'rm.eyebrow': 'Hoja de ruta 2026', 'rm.title': 'El camino al lanzamiento.',
+    'rm.sub': 'Cuatro hitos desde la due diligence hasta capturar la primera cohorte de startups españolas.',
+    'rm.s1.t': 'Due diligence técnica', 'rm.s1.d': 'Auditoría detallada del modelo, partners de infraestructura y equipo operativo en SF.',
+    'rm.s2.t': 'Estructuración del fondo', 'rm.s2.d': 'Definición de términos de coinversión y mecanismos de despliegue para Spanish Founders Bridge I.',
+    'rm.s3.t': 'Aprobación de comité', 'rm.s3.d': 'Presentación final a órganos de gobierno institucionales para el despliegue de capital.',
+    'rm.s4.t': 'Lanzamiento operativo', 'rm.s4.d': 'Captación e integración de la primera cohorte de startups españolas en el modelo californiano activo.',
+    'team.eyebrow': 'El equipo',
+    'team.title': 'Un equipo híbrido.<br/>Construido para ambos ecosistemas.',
+    'team.lead': 'Mindset de Silicon Valley. ADN de founder español. <em>Un mismo puente.</em>',
+    'team.body': 'Décadas de experiencia combinada en inversión institucional, escalado de empresas tecnológicas y gestión de programas de aceleración — con raíces profundas en la cultura emprendedora española y una red inmersiva de VCs, corporaciones y mentores estadounidenses.',
+    'team.tp1.t': 'Capital institucional', 'team.tp1.d': 'Experiencia estructurando y desplegando vehículos institucionales a escala.',
+    'team.tp2.t': 'Escalado operativo', 'team.tp2.d': 'Track record en el escalado de empresas tecnológicas y programas de aceleración.',
+    'team.tp3.t': 'Red bicultural', 'team.tp3.d': 'Relaciones directas con VCs y corporaciones de EE. UU. y la comunidad founder española.',
+    'team.p1.n': 'Presidente y cofundador', 'team.p1.r': 'Redes público-privadas y ejecución', 'team.p1.b': 'Rol paraguas para El Fondo y El Hub.',
+    'team.p2.n': 'Managing Partner', 'team.p2.r': 'Estrategia de inversión y cartera', 'team.p2.b': 'Lidera la estrategia de inversión, gestión de cartera y fundraising.',
+    'team.p3.n': 'CEO de El Hub', 'team.p3.r': 'Operaciones y comunidad', 'team.p3.b': 'Supervisa operaciones, estrategia y crecimiento de comunidad del hub.',
+    'team.p4.n': 'Head of Acceleration', 'team.p4.r': 'Programas y apoyo a cartera', 'team.p4.b': 'Lidera programas de aceleración y el apoyo a las compañías de cartera.',
+    'wl.title': 'Estarás cuando se <br/><em>abran las puertas</em>.',
+    'wl.sub': 'Founders, inversores y partners — los miembros early de la lista tendrán acceso prioritario a la primera cohorte, la ronda de inversión y la comunidad y los eventos de lanzamiento.',
+    'wl.r1': 'Soy founder', 'wl.r2': 'Soy inversor', 'wl.r3': 'Partner / Otro',
+    'wl.ph': 'tu@email.com', 'wl.btn': 'Solicitar acceso',
+    'wl.priv': 'Sin spam. Solo te escribimos cuando hay algo real que contar.',
+    'ft.tag': 'Convirtiendo la fricción geográfica en una ventaja competitiva permanente.'
+  }
+};
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (i18n[lang][k] !== undefined) el.innerHTML = i18n[lang][k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.getAttribute('data-i18n-ph');
+    if (i18n[lang][k] !== undefined) el.placeholder = i18n[lang][k];
+  });
+  document.querySelectorAll('.lang-switch button').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+}
+
+document.querySelectorAll('.lang-switch button').forEach(b => {
+  b.addEventListener('click', () => setLang(b.dataset.lang));
+});
+
+document.querySelectorAll('.role-pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.role-pill').forEach(x => x.classList.remove('active'));
+    p.classList.add('active');
+  });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav switches between dark (over hero) and light (over content) on scroll
+const navEl = document.querySelector('nav');
+const heroEl = document.querySelector('.hero');
+function updateNav() {
+  const heroBottom = heroEl.offsetTop + heroEl.offsetHeight - 48;
+  navEl.classList.toggle('scrolled', window.scrollY > heroBottom - 100);
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
+
+// Default to Spanish if browser is Spanish
+if ((navigator.language || '').toLowerCase().startsWith('es')) setLang('es');
+</script>
+
+</body>
+</html>
