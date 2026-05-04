@@ -662,6 +662,65 @@
     margin-top: 16px;
   }
 
+  /* Form states: loading & success */
+  .waitlist-form.loading button { opacity: 0.7; cursor: wait; }
+  .waitlist-form.loading button::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-top-color: var(--bg-dark);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    vertical-align: -2px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .waitlist-success {
+    display: none;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 24px 28px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    text-align: center;
+    animation: fadeInUp 0.5s ease-out;
+  }
+  .waitlist-success.show { display: block; }
+  .waitlist-success .check {
+    width: 44px; height: 44px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2997ff 0%, #a78bfa 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 22px; font-weight: 600;
+  }
+  .waitlist-success .ok-title {
+    font-size: 19px;
+    color: white;
+    font-weight: 500;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .waitlist-success .ok-msg {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.65);
+    line-height: 1.5;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .waitlist-error {
+    display: none;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #ff8a8a;
+  }
+  .waitlist-error.show { display: block; }
+
   /* ===== Footer ===== */
   footer {
     background: var(--bg-alt);
@@ -1157,10 +1216,16 @@
       <button class="role-pill" data-role="investor" data-i18n="wl.r2">I'm an investor</button>
       <button class="role-pill" data-role="partner" data-i18n="wl.r3">Partner / Other</button>
     </div>
-    <form class="waitlist-form" onsubmit="event.preventDefault(); alert('Mock form — wire to your email service when ready.');">
-      <input type="email" placeholder="your@email.com" required data-i18n-ph="wl.ph"/>
-      <button type="submit" data-i18n="wl.btn">Request access</button>
+    <form class="waitlist-form" id="waitlistForm">
+      <input type="email" id="waitlistEmail" placeholder="your@email.com" required data-i18n-ph="wl.ph"/>
+      <button type="submit" id="waitlistSubmit" data-i18n="wl.btn">Request access</button>
     </form>
+    <p class="waitlist-error" id="waitlistError" data-i18n="wl.err">Something went wrong. Please try again.</p>
+    <div class="waitlist-success" id="waitlistSuccess">
+      <div class="check">✓</div>
+      <div class="ok-title" data-i18n="wl.ok.t">You're on the list.</div>
+      <div class="ok-msg" data-i18n="wl.ok.m">We've sent a confirmation to your inbox. Antonio will be in touch when there's news worth sharing.</div>
+    </div>
     <p class="privacy-note" data-i18n="wl.priv">No spam. Updates only when there's something real to share.</p>
   </div>
 </section>
@@ -1245,6 +1310,9 @@ const i18n = {
     'wl.r1': "I'm a founder", 'wl.r2': "I'm an investor", 'wl.r3': 'Partner / Other',
     'wl.ph': 'your@email.com', 'wl.btn': 'Request access',
     'wl.priv': "No spam. Updates only when there's something real to share.",
+    'wl.err': 'Something went wrong. Please try again.',
+    'wl.ok.t': "You're on the list.",
+    'wl.ok.m': "We've sent a confirmation to your inbox. Antonio will be in touch when there's news worth sharing.",
     'ft.tag': 'Converting geographic friction into permanent competitive advantage.'
   },
   es: {
@@ -1318,6 +1386,9 @@ const i18n = {
     'wl.r1': 'Soy founder', 'wl.r2': 'Soy inversor', 'wl.r3': 'Partner / Otro',
     'wl.ph': 'tu@email.com', 'wl.btn': 'Solicitar acceso',
     'wl.priv': 'Sin spam. Solo te escribimos cuando hay algo real que contar.',
+    'wl.err': 'Algo ha fallado. Por favor, inténtalo de nuevo.',
+    'wl.ok.t': 'Estás en la lista.',
+    'wl.ok.m': 'Hemos enviado una confirmación a tu bandeja de entrada. Antonio te escribirá cuando haya novedades que merezca la pena compartir.',
     'ft.tag': 'Convirtiendo la fricción geográfica en una ventaja competitiva permanente.'
   }
 };
@@ -1363,6 +1434,41 @@ function updateNav() {
 }
 window.addEventListener('scroll', updateNav, { passive: true });
 updateNav();
+
+// Waitlist form: submit to Google Apps Script
+const WAITLIST_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxpxj1phaaNeF9Bw0t4L9fUPBYB6jbYu9RIFu91jpy0FXWdhqSoxd8sPpSnk4oD7FaMdg/exec';
+const waitlistForm = document.getElementById('waitlistForm');
+const waitlistSuccess = document.getElementById('waitlistSuccess');
+const waitlistError = document.getElementById('waitlistError');
+
+waitlistForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  waitlistError.classList.remove('show');
+  waitlistForm.classList.add('loading');
+
+  const email = document.getElementById('waitlistEmail').value.trim();
+  const activeRolePill = document.querySelector('.role-pill.active');
+  const role = activeRolePill ? activeRolePill.dataset.role : 'unknown';
+  const lang = document.documentElement.lang || 'en';
+
+  try {
+    // Apps Script web apps require a request that avoids CORS preflight.
+    // text/plain is treated as a "simple" request and the body is parsed as JSON server-side.
+    await fetch(WAITLIST_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ email, role, lang })
+    });
+    // Note: with mode 'no-cors' the response is opaque — we treat reaching this point as success.
+    waitlistForm.style.display = 'none';
+    waitlistSuccess.classList.add('show');
+  } catch (err) {
+    console.error(err);
+    waitlistForm.classList.remove('loading');
+    waitlistError.classList.add('show');
+  }
+});
 
 // Default to Spanish if browser is Spanish
 if ((navigator.language || '').toLowerCase().startsWith('es')) setLang('es');
